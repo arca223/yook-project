@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+  server:
+    volumes:
+      - ./server/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./server/conf/extra/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+
+  php:
+    volumes:
+      - ../../abbeal-project:/var/www/abbeal
+
+  database:
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Dev utilities
+  adminer:
+    image: adminer:latest
+    ports:
+      - 8080:8080
+
+  mailhog:
+    build:
+      dockerfile: tools/mailhog/Dockerfile
+      context: .
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+
+  node:
+    image: node:latest
+    working_dir: /var/www/current
+    volumes:
+      - ../:/var/www/current
+    command: yarn watch
+
+volumes:
+  postgres_data:

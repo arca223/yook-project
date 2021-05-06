@@ -1,0 +1,34 @@
+version: "3.3"
+
+services:
+  server:
+    build:
+      dockerfile: server/Dockerfile
+      context: .
+    volumes:
+      - ../:/var/www/current/
+    ports:
+      - 80:80
+
+  php:
+    build:
+      dockerfile: php/Dockerfile
+      context: .
+    volumes:
+      - ../:/var/www/current
+    links:
+      - redis
+
+  database:
+    build:
+      dockerfile: database/Dockerfile
+      context: .
+    environment:
+      POSTGRES_USER: ${DATABASE_USER:-db_user}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-db_password}
+      POSTGRES_DB: ${DATABASE_NAME:-db_name}
+
+  redis:
+    image: redis:latest
+
+    
