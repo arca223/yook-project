@@ -10,17 +10,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CarbonOffset
 {
-    /**
+
+    /*
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    /*private $id;*/
 
     /**
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    private $year;
 
     /**
      * @ORM\Column(type="integer")
@@ -55,6 +62,18 @@ class CarbonOffset
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    public function setYear($year): self
+    {
+        $this->year = $year;
 
         return $this;
     }

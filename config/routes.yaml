@@ -1,3 +1,14 @@
-offset-carbon:
-    path: /api/offset-carbon
-    controller: App\Controller\Api\OffsetCarbonController
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+
+carbon-offsets:
+    path: /api/offsets
+    controller: App\Controller\Api\OffsetCarbonController::carbonOffsetsAction
+
+carbon-offsets-by-year:
+    path: /api/offsets/{year}
+    controller: App\Controller\Api\OffsetCarbonController::carbonOffsetsByYearAction
+
