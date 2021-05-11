@@ -10,11 +10,11 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Security;
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as OA;
 /**
  * @Route("/api")
  */
-class OffsetCarbonController extends AbstractController
+class CarbonOffsetController extends AbstractController
 {
     private $offsetCalculatorService;
 
@@ -27,15 +27,15 @@ class OffsetCarbonController extends AbstractController
      * Gives all the carbon offsets
      *
      * @Route("/offsets}", methods={"GET"})
-     * @SWG\Response(
+     * @OA\Response(
      *     response=200,
      *     description="Gives the carbon offsets",
-     *     @SWG\Schema(
+     *     @OA\JsonContent(
      *        type="array",
-     *        @SWG\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
+     *        @OA\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
      *     )
      * )
-     * @SWG\Tag(name="CarbonOffsets")
+     * @OA\Tag(name="CarbonOffsets")
      *
      */
     public function carbonOffsetsAction()
@@ -62,22 +62,22 @@ class OffsetCarbonController extends AbstractController
      * Gives all the offset for a given date
      *
      * @Route("/offsets/{year}", methods={"GET"})
-     * @SWG\Response(
+     * @OA\Response(
      *     response=200,
      *     description="Gives the offset for a given year",
-     *     @SWG\Schema(
+     *     @OA\JsonContent(
      *        type="array",
-     *        @SWG\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
+     *        @OA\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
      *     )
      * )
-     * @SWG\Parameter(
+     * @OA\Parameter(
      *     name="year",
      *     in="query",
      *     description="The year to fetch offsets",
-     *     @SWG\Schema(type="int"),
+     *     @OA\Schema(type="int"),
      *
      * )
-     * @SWG\Tag(name="CarbonOffsetByYear")
+     * @OA\Tag(name="CarbonOffsetByYear")
      *
      */
     public function carbonOffsetsByYearAction(int $year)

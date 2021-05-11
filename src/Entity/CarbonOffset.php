@@ -125,4 +125,9 @@ class CarbonOffset
 
         return $this;
     }
+
+    public function __call($name, $arguments = null)
+    {
+        return $this->$name;
+    }
 }
