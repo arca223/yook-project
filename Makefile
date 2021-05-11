@@ -31,7 +31,6 @@ wait:
 ##—— Docker 🐳 —————————————————————————————————————————————————————————————————
 install: ## Install composer and yarn
 	$(MAKE_DOCKER) composer-install
-	$(MAKE_DOCKER) yarn-install
 run: ## Build and up container
 	$(MAKE_DOCKER) build
 	$(MAKE_DOCKER) up
@@ -56,50 +55,21 @@ sf: ## Symfony CLI helps developers manage projects, from local code to remote i
 	$(MAKE_DOCKER) sf
 sf-cli: ## Runs the Symfony Console (bin/console) for current project
 	$(MAKE_DOCKER) symfony $(COMMAND_ARGS)
-node: ## Node CLI
-	$(MAKE_DOCKER) node-bash
 php: ## PHP CLI
 	$(MAKE_DOCKER) php-bash
-phpqa: ## PHPQA CLI
-	$(PHPQA) bash
+
 
 ##—— Maker 🏭 ———————————————————————————————————————————————————————————————
 entity: ## Create entity resources
 	$(MAKE_DOCKER) symfony ADD_ENV="MAKER_NAMESPACE='Doctrine2'" make:entity --force-annotation
 migration: ## Create migration
 	$(MAKE_DOCKER) symfony make:migration
+migrate: ## Create migration
+	$(MAKE_DOCKER) symfony do:mi:mi
+fixtures: ## Create migration
+	$(MAKE_DOCKER) symfony do:fix:lo
 controller: ## Create controller resources
 	$(MAKE_DOCKER) symfony make:controller
-
-##—— Quality of Analysis ✅ —————————————————————————————————————————————————————————————————
-php-cs: ## The PHP Coding Standards Fixer tool fixes your code to follow standards
-	@echo '----🧪 PHP Coding Standards Fixer -----------'
-	@$(PHPQA_NOTTY) php-cs-fixer fix
-phpstan: ## PHPStan focuses on finding errors in your code without actually running it.
-	@echo '----🧪 PHP Static Analysis Tool ------------------'
-	@$(PHPQA) phpstan analyse -l 0 src tests
-
-##—— Tests ✅ —————————————————————————————————————————————————————————————————
-test: ## Run test PHP-CS / Security:check / Testing / Infection / PHPStan
-	@echo '---- 🏁 START TEST ------------'
-	@echo '----🧪 PHP Coding Standards Fixer -----------'
-	@$(PHPQA) php-cs-fixer fix
-	@echo '----🧪 Security Checker -------'
-	@$(PHPQA) symfony security:check
-	@echo '----🧪 The PHP Testing ---------------'
-	@$(PHPQA) php -d pcov.enabled=1 ./bin/phpunit 
-# @echo '----🧟 The PHP Muta Testing ---------------'
-# @$(PHPQA) /tools/infection run --initial-tests-php-options='-dpcov.enabled=1' --coverage=build/coverage
-	@echo '----🧪 PHP Static Analysis Tool ------------------'
-	@$(PHPQA) phpstan analyse -l 0 src tests
-	@echo '---- ENDED TEST ---------------'
-
-tu-file:
-	@$(PHPQA) php -d pcov.enabled=1 ./bin/phpunit $(COMMAND_ARGS)
-
-tu:
-	@echo '----🧪 The PHP Testing ---------------'
-	@$(PHPQA) php -d pcov.enabled=1 ./bin/phpunit --testsuite $(COMMAND_ARGS)
 
 reload:
 	$(MAKE_DOCKER) reload

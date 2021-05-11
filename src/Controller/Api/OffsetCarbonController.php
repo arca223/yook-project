@@ -10,8 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Security;
-use OpenApi\Annotations as OA;
-
+use Swagger\Annotations as SWG;
 /**
  * @Route("/api")
  */
@@ -28,15 +27,15 @@ class OffsetCarbonController extends AbstractController
      * Gives all the carbon offsets
      *
      * @Route("/offsets}", methods={"GET"})
-     * @OA\Response(
+     * @SWG\Response(
      *     response=200,
      *     description="Gives the carbon offsets",
-     *     @OA\JsonContent(
+     *     @SWG\Schema(
      *        type="array",
-     *        @OA\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
+     *        @SWG\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
      *     )
      * )
-     * @OA\Tag(name="CarbonOffsets")
+     * @SWG\Tag(name="CarbonOffsets")
      *
      */
     public function carbonOffsetsAction()
@@ -63,22 +62,22 @@ class OffsetCarbonController extends AbstractController
      * Gives all the offset for a given date
      *
      * @Route("/offsets/{year}", methods={"GET"})
-     * @OA\Response(
+     * @SWG\Response(
      *     response=200,
      *     description="Gives the offset for a given year",
-     *     @OA\JsonContent(
+     *     @SWG\Schema(
      *        type="array",
-     *        @OA\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
+     *        @SWG\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
      *     )
      * )
-     * @OA\Parameter(
+     * @SWG\Parameter(
      *     name="year",
      *     in="query",
      *     description="The year to fetch offsets",
-     *     @OA\Schema(type="int"),
+     *     @SWG\Schema(type="int"),
      *
      * )
-     * @OA\Tag(name="CarbonOffsetByYear")
+     * @SWG\Tag(name="CarbonOffsetByYear")
      *
      */
     public function carbonOffsetsByYearAction(int $year)

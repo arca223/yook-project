@@ -56,19 +56,6 @@ require:
 require-dev:
 	@$(COMPOSE) run --rm $(PHP_SERVICE) composer require --prefer-source --dev $(COMMAND_ARGS)
 
-## —— Yarn 🐱 ——————————————————————————————————————————————————————————————
-yarn-install: ../yarn.lock ## Install vendors according to the current yarn.lock file
-	@$(COMPOSE) run --rm $(NODE_SERVICE) yarn install --force
-
-yarn-install-no-tty: ../yarn.lock ## Alias composer-install without interaction
-	@$(COMPOSE) exec -T $(NODE_SERVICE) yarn install --non-interactive
-
-yarn-add: ## Install vendors according to the current yarn.lock file
-	@$(COMPOSE) run --rm $(NODE_SERVICE) yarn add $(COMMAND_ARGS)
-
-yarn-add-dev: ## Install vendors according to the current yarn.lock file
-	@$(COMPOSE) run --rm $(NODE_SERVICE) yarn add --dev $(COMMAND_ARGS)
-
 ## —— Symfony 🎵 ———————————————————————————————————————————————————————————————
 sf: ## List all Symfony commands
 	@$(PHP) symfony
@@ -87,14 +74,3 @@ reload:
 ## —— PHP Container 💻 ————————————————————————————————————————————————————————
 php-bash: ## Connect to the application container
 	@$(COMPOSE) run --rm $(PHP_SERVICE) bash
-
-## —— Node Container 💻 ———————————————————————————————————————————————————————————————
-node-bash:
-	@$(COMPOSE) run --rm $(NODE_SERVICE) bash
-
-node-build:
-	@$(COMPOSE) run --rm $(NODE_SERVICE) npm run build
-
-## —— Redis CLI 💻 ———————————————————————————————————————————————————————————————
-redis-cli:
-	@$(COMPOSE) exec -T $(REDIS_SERVICE) redis-cli
