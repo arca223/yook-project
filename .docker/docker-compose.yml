@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.8"
 
 services:
   server:
@@ -16,19 +16,15 @@ services:
       context: .
     volumes:
       - ../:/var/www/current
-    links:
-      - redis
 
   database:
     build:
       dockerfile: database/Dockerfile
       context: .
     environment:
-      POSTGRES_USER: ${DATABASE_USER:-db_user}
+      POSTGRES_USER: ${DATABASE_USERNAME:-db_user}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-db_password}
       POSTGRES_DB: ${DATABASE_NAME:-db_name}
 
-  redis:
-    image: redis:latest
 
     

@@ -33,7 +33,6 @@ down:
 
 build:
 	@$(COMPOSE) build
-	@docker build -t tools/phpqa ./tools/phpqa
 
 reset-all:
 	@$(COMPOSE) down -v --remove-orphans

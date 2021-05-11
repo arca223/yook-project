@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.8"
 
 services:
   server:
@@ -8,32 +8,11 @@ services:
 
   php:
     volumes:
-      - ../../abbeal-project:/var/www/abbeal
+      - ../../yook-project:/var/www/current
 
   database:
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
-  # Dev utilities
-  adminer:
-    image: adminer:latest
-    ports:
-      - 8080:8080
-
-  mailhog:
-    build:
-      dockerfile: tools/mailhog/Dockerfile
-      context: .
-    ports:
-      - '1025:1025'
-      - '8025:8025'
-
-  node:
-    image: node:latest
-    working_dir: /var/www/current
-    volumes:
-      - ../:/var/www/current
-    command: yarn watch
 
 volumes:
   postgres_data:

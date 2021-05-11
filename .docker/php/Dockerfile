@@ -35,7 +35,6 @@ RUN docker-php-ext-configure \
 
 RUN docker-php-ext-enable \
     opcache \
-    redis \
   ;
 
 RUN wget https://get.symfony.com/cli/installer -O - | bash && \
