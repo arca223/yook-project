@@ -28,6 +28,7 @@ For now, only the year 2020; 2030, 2040 and 2050 and available.
 
 TODO:
 
+- Error gestion generally, especially when missing date.
 - Fix OpenAPI /api/doc not finding NelmioBundle Controller
 - Develop an algorithm to manager eithe more year of manage any DateTime
 - Develop the command for price offsets
