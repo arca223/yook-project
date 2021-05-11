@@ -29,7 +29,7 @@ wait:
 	sleep 5
 
 ##—— Docker 🐳 —————————————————————————————————————————————————————————————————
-install: ## Install composer and yarn
+install: ## Install composer
 	$(MAKE_DOCKER) composer-install
 run: ## Build and up container
 	$(MAKE_DOCKER) build
@@ -44,11 +44,6 @@ composer-install: ## Install vendors according to the current composer.lock file
 composer-install-no-tty: ## Alias composer-install without interaction
 	$(MAKE_DOCKER) composer-install-no-tty
 
-##—— Yarn 🐱 ———————————————————————————————————————————————————————————————————
-yarn-install: ## Install vendors according to the current yarn.lock file
-	$(MAKE_DOCKER) yarn-install
-yarn-install-no-tty: ## Alias yarn-install without interaction
-	$(MAKE_DOCKER) yarn-install-no-tty
 
 ##—— Symfony && CLI 🎵 ———————————————————————————————————————————————————————————————
 sf: ## Symfony CLI helps developers manage projects, from local code to remote infrastructure

@@ -12,7 +12,7 @@
 
 ## Run
 
-The server is up to http://localhost:80
+The server is up to http://localhost
 
 The different endpoints are
 
@@ -28,6 +28,7 @@ For now, only the year 2020; 2030, 2040 and 2050 and available.
 
 TODO:
 
+- Fix OpenAPI /api/doc not finding NelmioBundle Controller
 - Develop an algorithm to manager eithe more year of manage any DateTime
 - Develop the command for price offsets
 - Set in DB a yearly budget (Develop entity)

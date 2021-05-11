@@ -35,7 +35,7 @@ class OffsetFixtures extends Fixture
         ],
     ];
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $arrayYears = [2020, 2030, 2040, 2050];
         foreach ($arrayYears as $year)

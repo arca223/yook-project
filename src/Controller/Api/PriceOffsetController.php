@@ -12,9 +12,6 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use OpenApi\Annotations as OA;
 
-/**
- * @Route("/api")
- */
 class PriceOffsetController extends AbstractController
 {
     private $offsetCalculatorService;
@@ -27,7 +24,7 @@ class PriceOffsetController extends AbstractController
     /**
      * Gives the partners offsets for a given price and date
      *
-     * @Route("/price-offsets/{year}/{price}", methods={"GET"})
+     * @Route("/api/price-offsets/{year}/{price}", methods={"GET"})
      * @OA\Response(
      *     response=200,
      *     description="Gives the offset for a given year",
@@ -53,7 +50,7 @@ class PriceOffsetController extends AbstractController
      * @OA\Tag(name="CarbonOffsetByYear")
      *
      */
-    public function price(int $year, int $price)
+    public function priceAction(int $year, int $price): JsonResponse
     {
         return new JsonResponse($this->offsetCalculatorService->calculateBudgetForPartners($price, $year));
     }

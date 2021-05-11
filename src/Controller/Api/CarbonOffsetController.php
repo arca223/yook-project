@@ -11,9 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use OpenApi\Annotations as OA;
-/**
- * @Route("/api")
- */
+
 class CarbonOffsetController extends AbstractController
 {
     private $offsetCalculatorService;
@@ -26,7 +24,7 @@ class CarbonOffsetController extends AbstractController
     /**
      * Gives all the carbon offsets
      *
-     * @Route("/offsets}", methods={"GET"})
+     * @Route("/api/offsets}", methods={"GET"})
      * @OA\Response(
      *     response=200,
      *     description="Gives the carbon offsets",
@@ -61,7 +59,7 @@ class CarbonOffsetController extends AbstractController
     /**
      * Gives all the offset for a given date
      *
-     * @Route("/offsets/{year}", methods={"GET"})
+     * @Route("/api/offsets/{year}", methods={"GET"})
      * @OA\Response(
      *     response=200,
      *     description="Gives the offset for a given year",

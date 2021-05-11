@@ -1,10 +1,14 @@
 carbon-offsets:
     path: /api/offsets
-    controller: App\Controller\Api\OffsetCarbonController::carbonOffsetsAction
+    controller: App\Controller\Api\CarbonOffsetController::carbonOffsetsAction
 
 carbon-offsets-by-year:
     path: /api/offsets/{year}
-    controller: App\Controller\Api\OffsetCarbonController::carbonOffsetsByYearAction
+    controller: App\Controller\Api\CarbonOffsetController::carbonOffsetsByYearAction
+
+price-offsets:
+    path: /api/price-offsets/{year}/{price}
+    controller: App\Controller\Api\CarbonOffsetController::carbonOffsetsByYearAction
 
 app.swagger_ui:
     path: /doc

@@ -27,7 +27,7 @@ class CalculateOffsetCommandV1 extends Command
             ->addArgument('year');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $year = $input->getArgument('year');
         if ($year) {
@@ -42,7 +42,8 @@ class CalculateOffsetCommandV1 extends Command
         return Command::SUCCESS;
     }
 
-    private function outputOffsetForYear(OutputInterface $output, $year) {
+    private function outputOffsetForYear(OutputInterface $output, $year): void
+    {
         $carbonOffset = $this->offsetCalculatorService->getCarbonOffsetsByYearV1($year);
         $output->writeln(sprintf('The %% Offset for each type in %s is :', $year));
         $output->writeln('');

@@ -23,7 +23,7 @@ class SandboxController
         $this->testService2 = $testService2;
     }
 
-    public function __invoke()
+    public function __invoke(): Response
     {
         //$parners = $this->testService->getPartners();
         //$partnersByType = $this->testService->getPartnersByType(1);
