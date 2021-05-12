@@ -1,3 +1,8 @@
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
 carbon-offsets:
     path: /api/offsets
     controller: App\Controller\Api\CarbonOffsetController::carbonOffsetsAction
@@ -9,8 +14,3 @@ carbon-offsets-by-year:
 price-offsets:
     path: /api/price-offsets/{year}/{price}
     controller: App\Controller\Api\CarbonOffsetController::carbonOffsetsByYearAction
-
-app.swagger_ui:
-    path: /doc
-    methods: GET
-    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }

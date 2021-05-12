@@ -30,24 +30,18 @@ class PriceOffsetController extends AbstractController
      *     description="Gives the offset for a given year",
      *     @OA\JsonContent(
      *        type="array",
-     *        @OA\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
      *     )
      * )
      * @OA\Parameter(
      *     name="year",
      *     in="query",
      *     description="The year to fetch offsets",
-     *     @OA\Schema(type="int"),
-     *
      * )
      * @OA\Parameter(
      *     name="price",
      *     in="query",
      *     description="The budget to split between partners",
-     *     @OA\Schema(type="int"),
-     *
      * )
-     * @OA\Tag(name="CarbonOffsetByYear")
      *
      */
     public function priceAction(int $year, int $price): JsonResponse

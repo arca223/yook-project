@@ -24,13 +24,12 @@ class CarbonOffsetController extends AbstractController
     /**
      * Gives all the carbon offsets
      *
-     * @Route("/api/offsets}", methods={"GET"})
+     * @Route("/api/offsets", methods={"GET"})
      * @OA\Response(
      *     response=200,
      *     description="Gives the carbon offsets",
      *     @OA\JsonContent(
      *        type="array",
-     *        @OA\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
      *     )
      * )
      * @OA\Tag(name="CarbonOffsets")
@@ -65,7 +64,6 @@ class CarbonOffsetController extends AbstractController
      *     description="Gives the offset for a given year",
      *     @OA\JsonContent(
      *        type="array",
-     *        @OA\Items(ref=@Model(type=CarbonOffset::class, groups={"full"}))
      *     )
      * )
      * @OA\Parameter(

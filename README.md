@@ -1,10 +1,14 @@
 # Yook Technical Test Project
 
 ## Installation
+Always input "yes" for each interaction.
+First, check that all env DB parameters are in the file .env.
+
+```cp .env .env.dev.local```
 
 ```make run```
 
-```make composer```
+```make composer-install```
 
 ```make migrate```
 
